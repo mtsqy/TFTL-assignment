@@ -38,9 +38,9 @@ const ListMenu: React.FC = () => {
   useEffect(() => {
     if (menuRef.current) {
       if (isMenuVisible) {
-        gsap.to(menuRef.current, { opacity: 1, y: 0, duration: 0.3, display: 'block' })
+        gsap.to(menuRef.current, { opacity: 1, y: 0, duration: 0.3})
       } else {
-        gsap.to(menuRef.current, { opacity: 0, y: -20, duration: 0.3, display: 'none' })
+        gsap.to(menuRef.current, { opacity: 0, y: -20, duration: 0.3})
       }
     }
   }, [isMenuVisible])
