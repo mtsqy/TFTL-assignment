@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import gsap from 'gsap'
 import { useCursor } from "@/context/CursorContext"
 import CircularText from "./CircularText"

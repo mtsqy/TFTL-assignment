@@ -1,13 +1,13 @@
 import { usePathname, useRouter } from "next/navigation"
 import { animatePageOut } from "@/animations"
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import { HoverContext } from "@/context/HoverContext"
 import gsap from 'gsap'
 
 export default function Header() {
     const hoverContext = useContext(HoverContext)
     if (!hoverContext) throw new Error('HoverContext must be used within HoverProvider')
-    const { handleMouseEnter, handleMouseLeave, isHovered } = hoverContext
+    const { handleMouseEnter, handleMouseLeave } = hoverContext
     const router = useRouter()
     const pathname = usePathname()
 
