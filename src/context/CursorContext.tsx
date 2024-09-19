@@ -17,16 +17,29 @@ export const CursorProvider: React.FC<CursorProviderProps> = ({ children }) => {
   useEffect(() => {
     let animationFrameId: number
 
-    const updateCursorPosition = (event: MouseEvent) => {
-      const { clientX: x, clientY: y } = event
+    const updateCursorPosition = (event: MouseEvent | TouchEvent) => {
+      let x: number, y: number
+
+      if (event.type.startsWith('touch')) {
+        const touch = (event as TouchEvent).touches[0]
+        x = touch.clientX
+        y = touch.clientY
+      } else {
+        const { clientX, clientY } = event as MouseEvent
+        x = clientX
+        y = clientY
+      }
+
       cancelAnimationFrame(animationFrameId)
       animationFrameId = requestAnimationFrame(() => setCursorPosition({ x, y }))
     }
 
     window.addEventListener('mousemove', updateCursorPosition)
+    window.addEventListener('touchmove', updateCursorPosition)
 
     return () => {
       window.removeEventListener('mousemove', updateCursorPosition)
+      window.removeEventListener('touchmove', updateCursorPosition)
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
